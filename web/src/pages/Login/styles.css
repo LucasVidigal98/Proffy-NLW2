@@ -61,8 +61,19 @@
     #login-container form input{
         width: 100%;
         height: 7.2rem;
-        border: 0;
-        border-radius: 0.8rem;
+        border: 1px solid var(--color-line-in-white);
+        background-color: var(--color-input-background);
+        outline: 0;
+    }
+
+    #login-container form #email-input{
+        border-top-left-radius: 0.8rem;
+        border-top-right-radius: 0.8rem;
+    }
+
+    #login-container form #passwd-input{
+        border-bottom-left-radius: 0.8rem;
+        border-bottom-right-radius: 0.8rem;
     }
 
     #login-container form #login-options {
@@ -81,8 +92,8 @@
     }
 
     #login-container form #login-options #remember-option input{
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.8rem;
+        height: 1.8rem;
         margin-right: 1rem;
         color: var(--color-input-background);
     }
@@ -106,6 +117,13 @@
         font: 700 Archivo;
         background-color: var(--color-text-complement);
         color: var(--color-text-base);
+        transition: background-color 0.2s;
+    }
+
+    #login-container form button:hover{
+        color: var(--color-button-text);
+        background-color: var(--color-secundary);
+        cursor: pointer;
     }
 
     #login-container footer{
