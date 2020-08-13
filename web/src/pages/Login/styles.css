@@ -22,7 +22,7 @@
         left: 0;
         top: 0;
         background-color: var(--color-primary);
-        background-image: url('../../assets/images/give-classes-background.png');
+        background-image: url('../../assets/images/success-background.svg');
     }
 
     #banner #logo-container h2{
