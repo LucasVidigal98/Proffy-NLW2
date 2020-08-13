@@ -1,0 +1,40 @@
+#page-register{
+    width: 100vw;
+    height: 100vh;
+}
+
+#banner{
+    display: flex;
+    align-items: center;
+    background-color: var(--color-primary);
+    height: 25.0rem;
+}
+
+#banner #logo-container{
+    margin-left: 1.8rem;
+}
+
+#banner #logo-container h2{
+    font: 400 2.4rem Poppins;
+    color: var(--color-text-in-primary);
+}
+
+#page-register form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 363px;
+    width: 263px;
+    margin-top: 12.0rem;
+}
+
+#page-register form h1{
+    font: 600 3.6rem Poppins;
+    color: var(--color-text-title);
+    margin-bottom: 3.2rem;
+}
+
+#page-register input{
+    width: 100%;
+    align-self: start;
+}
