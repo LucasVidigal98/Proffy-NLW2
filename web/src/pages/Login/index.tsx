@@ -72,7 +72,7 @@ function Login(){
                             <span>Lembrar-me</span>
                       </div>
 
-                      <Link to="#" target="_blank">Esqueci minha senha</Link>
+                      <Link to="reset-password" >Esqueci minha senha</Link>
                    </div>
 
                    <button id="button-login" type="submit" onClick={handleLogin}>Entrar</button>

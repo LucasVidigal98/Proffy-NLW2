@@ -7,6 +7,8 @@ import TeacherForm from './pages/TeacherForm';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Successfull from './pages/Successfull';
+import ResetPassword from './pages/ResetPassword';
+import ResetSuccessfull from './pages/ResetSuccessfull';
 
 function Routes(){
     return(
@@ -14,6 +16,8 @@ function Routes(){
             <Route path="/" exact component={Login}/>
             <Route path="/register" component={Register}/>
             <Route path="/sucessfull" component={Successfull}/>
+            <Route path="/reset-password" component={ResetPassword} />
+            <Route path="/reset-successfull" component={ResetSuccessfull} />
             <Route path="/landing" component={Landing}/>
             <Route path="/study" component={TeacherList}/>
             <Route path="/give-classes" component={TeacherForm} />
