@@ -10,6 +10,46 @@
     background: var(--color-primary);
 }
 
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6.4rem;
+}
+
+header .user-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .user-info:hover{
+    cursor: pointer;
+}
+
+header .user-info img{
+    width: 4.0rem;
+    height: 4.0rem;
+    border-radius: 5.0rem;
+    margin-right: 1.2rem;
+}
+
+header .user-info span{
+    font: 400 1.6rem Poppins;
+    color: var(--color-title-in-primary);
+}
+
+header #logout{
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-primary-darker);
+    border-radius: 0.8rem;
+}
+
+header #logout:hover{
+    cursor: pointer;
+}
+
 .logo-container img{
     height: 10rem;
 }
@@ -96,9 +136,19 @@
         grid-template-rows: 350 px 1fr;
         grid-template-columns: 2fr 1fr 1fr;
         grid-template-areas: 
+            "img img logout"
             "logo hero hero" 
             "buttons buttons total"
         ;
+    }
+
+    header .user-info{
+        grid-area: img;
+    }
+
+    header #logout{
+        grid-area: logout;
+        justify-self: end;
     }
 
     .logo-container{

@@ -1,0 +1,20 @@
+#page-profile{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#page-profile #image-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 279px;
+}
+
+#page-profile #image-profile img{
+    width: 18.0rem;
+    height: 18.0rem;
+    border-radius: 9.0rem;
+}

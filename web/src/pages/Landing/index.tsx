@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -8,11 +8,22 @@ import landingImage from '../../assets/images/landing.svg';
 import studyIcons from '../../assets/images/icons/study.svg';
 import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
+import logOutIcon from '../../assets/images/icons/log-out.svg'
 
 import './styles.css'
 
 function Landing(){
     const [totalConnections, setTotalConnections] = useState(0);
+
+    const history = useHistory();
+
+    function handleBackToLogin(){
+        history.push('/');
+    }
+
+    function handleGoToProfile(){
+
+    }
 
     useEffect(() => {
         api.get('connections').then(response => {
@@ -24,6 +35,16 @@ function Landing(){
     return (
         <div id="page-landing">
             <div id="page-landing-content" className="container">
+                
+                <header>
+                    <div className="user-info" onClick={handleGoToProfile}>
+                        <img src="https://avatars1.githubusercontent.com/u/36079245?s=460&v=4" alt="Usuário" />
+                        <span>Lucas Vidigal</span>
+                    </div>
+                    
+                    <img id="logout" src={logOutIcon} alt="sair" onClick={handleBackToLogin}/>
+                </header>
+
                 <div className="logo-container">
                     <img src={logoImg} alt="Proffy" />
                     <h2>Sua Plataformna de estudos online</h2>
