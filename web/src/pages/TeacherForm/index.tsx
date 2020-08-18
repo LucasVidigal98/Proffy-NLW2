@@ -13,8 +13,6 @@ import warningIcon from '../../assets/images/icons/warning.svg'
 import './styles.css';
 
 function TeacherForm(){
-    const [name, setName] = useState('');
-    const [avatar, setAvatar] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
     const [bio, setBio] = useState('');
     const [subject, setSubject] = useState('');
@@ -31,17 +29,13 @@ function TeacherForm(){
         e.preventDefault();
 
         api.post('classes', {
-            name,
-            avatar,
             whatsapp,
             bio,
             subject,
             cost: Number(cost),
             schedule: scheduleItems
         }).then(() => {
-            alert('Cadastro realizado com sucesso!');
-
-            history.push('/');
+            history.push('/class-successfull');
         }).catch(() => {
             alert('Erro no cadastro!');
         });
@@ -59,41 +53,48 @@ function TeacherForm(){
         setScheduleItems(updatedScheduleItems);
     }
 
+
     return (
         <div id="page-teacher-form" className="container">
             <PageHeader 
                 title="Que incrível que você quer dar aulas."
-                description="O primeiro passo pe preencher esse formulário de inscrição."    
+                description="O primeiro passo pe preencher esse formulário de inscrição."  
+                pageHeaderName="Dar Aulas" 
             />
 
             <main>
                 <form onSubmit={handleCreateClass}>
                     <fieldset>
                         <legend>Seus Dados</legend>
-                        <Input name="name" label="Nome completo" onChange={(e) => { setName(e.target.value) }}/>
-                        <Input name="avatar" label="Avatar" onChange={(e) => { setAvatar(e.target.value) }}/>
-                        <Input name="whatsapp" label="Whatsapp" onChange={(e) => { setWhatsapp(e.target.value) }}/>
+                        <div id="user-grid">
+                            <img src="https://avatars1.githubusercontent.com/u/36079245?s=460&v=4" alt="avatar" />
+                            <span>Lucas Vidigal</span>
+                            <Input name="whatsapp" label="Whatsapp" onChange={(e) => { setWhatsapp(e.target.value) }}/>
+                        </div>
                         <Textarea name="bio" label="Biografia" onChange={(e) => { setBio(e.target.value) }}/>
                     </fieldset>
 
                     <fieldset>
                         <legend>Sobre a aula</legend>
-                        <Select 
-                            name="subject" 
-                            label="Matéria"
-                            onChange={(e) => { setSubject(e.target.value) }}
-                            value={subject}
-                            options={[
-                                { value: 'Artes', label: 'Artes' },
-                                { value: 'Biologia', label: 'Biologia' },
-                                { value: 'Ciências', label: 'Ciências' },
-                                { value: 'Educação Física', label: 'Educação Física' },
-                                { value: 'Física', label: 'Física' },
-                                { value: 'Geografia', label: 'Geografia' },
-                                { value: 'História', label: 'História' },
-                            ]}
-                        />
-                        <Input name="cost" label="Custo da sua hora por aula" onChange={(e) => { setCost(e.target.value) }}/>
+
+                        <div id="class-grid">
+                            <Select 
+                                name="subject" 
+                                label="Matéria"
+                                onChange={(e) => { setSubject(e.target.value) }}
+                                value={subject}
+                                options={[
+                                    { value: 'Artes', label: 'Artes' },
+                                    { value: 'Biologia', label: 'Biologia' },
+                                    { value: 'Ciências', label: 'Ciências' },
+                                    { value: 'Educação Física', label: 'Educação Física' },
+                                    { value: 'Física', label: 'Física' },
+                                    { value: 'Geografia', label: 'Geografia' },
+                                    { value: 'História', label: 'História' },
+                                ]}
+                            />
+                            <Input name="cost" label="Custo da sua hora por aula" onChange={(e) => { setCost(e.target.value) }}/>
+                        </div>
                     </fieldset>
 
                     <fieldset>

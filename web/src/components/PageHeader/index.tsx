@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import logoImg from '../../assets/images/logo.svg';
@@ -7,12 +7,19 @@ import backIcon from '../../assets/images/icons/back.svg';
 import './styles.css'
 
 interface PageHeaderProps {
-    title: string;
+    title?: string;
     description?: string;
     pageHeaderName?: string;
+    profileHeader?: boolean;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
+    const [style, setStyle] = useState('header-content')
+
+    useEffect(() => {
+        if(props.profileHeader) setStyle('header-content-img');
+    }, [props.profileHeader]);
+
     return(
         <header className="page-header">
             <div className="top-bar-container">
@@ -25,8 +32,9 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
                 <img src={logoImg} alt="Proffy" />
             </div>
 
-            <div className="header-content">
-                <strong>{props.title}</strong>
+            <div className={style}>
+
+                {props.title && <strong>{props.title}</strong>}
 
                 {props.description && <p>{props.description}</p>}
 

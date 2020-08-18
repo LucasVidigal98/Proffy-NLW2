@@ -10,6 +10,7 @@ import Successfull from './pages/Successfull';
 import ResetPassword from './pages/ResetPassword';
 import ResetSuccessfull from './pages/ResetSuccessfull';
 import Profile from './pages/Profile';
+import ClassSuccessfull from './pages/ClassSuccessfull';
 
 function Routes(){
     return(
@@ -23,6 +24,7 @@ function Routes(){
             <Route path="/study" component={TeacherList}/>
             <Route path="/give-classes" component={TeacherForm} />
             <Route path="/profile" component={Profile} />
+            <Route path="/class-successfull" component={ClassSuccessfull} />
         </BrowserRouter>
     );
 }

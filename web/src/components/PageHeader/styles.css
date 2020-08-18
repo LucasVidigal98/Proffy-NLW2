@@ -56,6 +56,7 @@
 @media (min-width: 700px){
     .page-header{
         height: 340px;
+        height: 53.2rem;
     }
 
     .page-header .top-bar-container{
@@ -73,6 +74,17 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
+    }
+
+    .page-header .header-content-img{
+        flex: 1;
+        max-width: 740px;
+        margin: 0 auto;
+        padding-bottom: 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .page-header .header-content strong{

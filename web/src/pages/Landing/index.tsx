@@ -22,7 +22,7 @@ function Landing(){
     }
 
     function handleGoToProfile(){
-
+        history.push('/profile');
     }
 
     useEffect(() => {
