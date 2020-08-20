@@ -42,6 +42,57 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
                {teacher.bio}
             </p>
 
+            <div id="schedules">
+                <div className="day">
+                    <span>Dia</span>
+                    <strong>Segunda</strong>
+                    <span>Horário</span>
+                    <strong>8h - 18h</strong>
+                </div>
+
+                <div className="day">
+                    <span>Dia</span>
+                    <strong>Segunda</strong>
+                    <span>Horário</span>
+                    <strong>8h - 18h</strong>
+                </div>
+
+                <div className="day">
+                    <span>Dia</span>
+                    <strong>Segunda</strong>
+                    <span>Horário</span>
+                    <strong>8h - 18h</strong>
+                </div>
+
+                <div className="day">
+                    <span>Dia</span>
+                    <strong>Segunda</strong>
+                    <span>Horário</span>
+                    <strong>8h - 18h</strong>
+                </div>
+
+                <div className="day">
+                    <span>Dia</span>
+                    <strong>Segunda</strong>
+                    <span>Horário</span>
+                    <strong>8h - 18h</strong>
+                </div>
+
+                <div className="day">
+                    <span>Dia</span>
+                    <strong>Segunda</strong>
+                    <span>Horário</span>
+                    <strong>8h - 18h</strong>
+                </div>
+
+                <div className="day">
+                    <span>Dia</span>
+                    <strong>Segunda</strong>
+                    <span>Horário</span>
+                    <strong>8h - 18h</strong>
+                </div>
+            </div>
+
             <footer>
                 <p>
                     Preço/hora

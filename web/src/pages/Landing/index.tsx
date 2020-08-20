@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, RouteComponentProps } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -10,10 +10,19 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 import logOutIcon from '../../assets/images/icons/log-out.svg'
 
-import './styles.css'
+import './styles.css';
 
-function Landing(){
+const Landing:React.FC<RouteComponentProps> = ({location}) => {
     const [totalConnections, setTotalConnections] = useState(0);
+    const [userId, setUserId] = useState(0);
+    const [userInfo, setUserInfo] = useState({
+        name:'',
+        middlename:'',
+        email:'',
+        avatar:'',
+        whatsapp:'',
+        bio:''
+    });
 
     const history = useHistory();
 
@@ -25,12 +34,26 @@ function Landing(){
         history.push('/profile');
     }
 
-    useEffect(() => {
+    useEffect(() => { 
         api.get('connections').then(response => {
             const { total } = response.data;
             setTotalConnections(total);
-        })
+        });
     }, []);
+
+    useEffect(() => {
+        setUserId(location.state as number);
+        const id = userId;
+       
+        api.get('user-info', {
+            params:{
+                id
+            }
+        }).then(response => {
+            setUserInfo(response.data);
+        });
+
+    }, [location.state, userId]);
 
     return (
         <div id="page-landing">
@@ -38,8 +61,8 @@ function Landing(){
                 
                 <header>
                     <div className="user-info" onClick={handleGoToProfile}>
-                        <img src="https://avatars1.githubusercontent.com/u/36079245?s=460&v=4" alt="Usuário" />
-                        <span>Lucas Vidigal</span>
+                        <img src={userInfo.avatar} alt="Avatar" />
+                        <span>{userInfo.name + ' ' + userInfo.middlename}</span>
                     </div>
                     
                     <img id="logout" src={logOutIcon} alt="sair" onClick={handleBackToLogin}/>

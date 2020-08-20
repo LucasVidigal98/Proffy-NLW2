@@ -1,6 +1,8 @@
 import React, { FormEvent, useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
+import api from '../../services/api';
+
 import logoImg from '../../assets/images/logo.svg';
 import heartImg from '../../assets/images/icons/purple-heart.svg';
 
@@ -13,7 +15,7 @@ function Login(){
 
     const history = useHistory();
 
-    function handleLogin(e: FormEvent){
+    async function handleLogin(e: FormEvent){
         e.preventDefault();
 
         if(buttonChecked && !localStorage.getItem('@proffy/remember')){
@@ -22,9 +24,22 @@ function Login(){
             localStorage.setItem('@proffy/remember', 'true');
         }
 
-        console.log({email, passwd});
+        const response = await api.get(`/user-login`, {
+            params:{
+                email,
+                passwd
+            }
+        });
 
-       history.push('/landing');
+        if(response.status !== 200){
+            alert(response.data);
+        }else{
+            const userId = response.data;
+            history.push({
+                pathname: '/landing',
+                state: userId
+            });
+        }
     }
 
     function handleRememberMe(){

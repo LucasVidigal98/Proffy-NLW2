@@ -20,11 +20,11 @@ function Routes(){
             <Route path="/sucessfull" component={Successfull}/>
             <Route path="/reset-password" component={ResetPassword} />
             <Route path="/reset-successfull" component={ResetSuccessfull} />
-            <Route path="/landing" component={Landing}/>
+            <Route path="/landing" render={(props) => <Landing {...props} />} />
             <Route path="/study" component={TeacherList}/>
             <Route path="/give-classes" component={TeacherForm} />
             <Route path="/profile" component={Profile} />
-            <Route path="/class-successfull" component={ClassSuccessfull} />
+            <Route path="/class-successfull:user_id" component={ClassSuccessfull} />
         </BrowserRouter>
     );
 }
