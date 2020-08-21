@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory, RouteComponentProps } from 'react-router-dom';
+import { useHistory, RouteComponentProps } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -16,6 +16,7 @@ const Landing:React.FC<RouteComponentProps> = ({location}) => {
     const [totalConnections, setTotalConnections] = useState(0);
     const [userId, setUserId] = useState(0);
     const [userInfo, setUserInfo] = useState({
+        id: 0,
         name:'',
         middlename:'',
         email:'',
@@ -31,7 +32,15 @@ const Landing:React.FC<RouteComponentProps> = ({location}) => {
     }
 
     function handleGoToProfile(){
-        history.push('/profile');
+        history.push('profile', {
+            state: userInfo
+        });
+    }
+
+    function handleGiveClasses(){
+        history.push('give-classes', {
+            info: userInfo
+        });
     }
 
     useEffect(() => { 
@@ -50,7 +59,17 @@ const Landing:React.FC<RouteComponentProps> = ({location}) => {
                 id
             }
         }).then(response => {
-            setUserInfo(response.data);
+            const userInfoAux = {
+                id: userId,
+                name: response.data.name,
+                middlename: response.data.middlename,
+                email: response.data.email,
+                avatar: response.data.avatar,
+                whatsapp: response.data.whatsapp,
+                bio: response.data.bio
+            }
+
+            setUserInfo(userInfoAux);
         });
 
     }, [location.state, userId]);
@@ -76,15 +95,15 @@ const Landing:React.FC<RouteComponentProps> = ({location}) => {
                 <img src={landingImage} alt="Plataforma de estudos" className="hero-image" />
 
                 <div className="buttons-container">
-                    <Link to="/study" className="study">
+                    <button className="study">
                         <img src={studyIcons} alt="Estudar" />
                         Estudar
-                    </Link>
+                    </button>
 
-                    <Link to="/give-classes" className="give-classes">
+                    <button className="give-classes" onClick={handleGiveClasses}>
                         <img src={giveClassesIcon} alt="Dar aula" />
                         Dar aula
-                    </Link>
+                    </button>
                 </div>
 
                 <span className="total-connections">

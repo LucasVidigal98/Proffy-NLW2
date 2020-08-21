@@ -22,8 +22,8 @@ function Routes(){
             <Route path="/reset-successfull" component={ResetSuccessfull} />
             <Route path="/landing" render={(props) => <Landing {...props} />} />
             <Route path="/study" component={TeacherList}/>
-            <Route path="/give-classes" component={TeacherForm} />
-            <Route path="/profile" component={Profile} />
+            <Route path="/give-classes" render={(props) => <TeacherForm {...props} />} />
+            <Route path="/profile" render={(props) => <Profile {...props} />} />
             <Route path="/class-successfull:user_id" component={ClassSuccessfull} />
         </BrowserRouter>
     );

@@ -76,7 +76,7 @@ header #logout:hover{
     margin: 3.2rem 0;
 }
 
-.buttons-container a{
+.buttons-container button{
     width: 30rem;
     height: 10.4rem;
     border-radius: 0.8rem;
@@ -90,30 +90,35 @@ header #logout:hover{
     color: var(--color-button-text);
 
     transition: background-color 0.2s;
+    outline: none;
+    box-shadow: none;
+    border: 0;
 }
 
-.buttons-container a:first-child{
+.buttons-container button:first-child{
     margin-right: 1.6rem;
 }
 
-.buttons-container a img{
+.buttons-container button img{
     width: 4rem;
 }
 
-.buttons-container a.study{
+.buttons-container button.study{
     background: var(--color-primary-lighter);
 }
 
-.buttons-container a.give-classes{
+.buttons-container button.give-classes{
     background: var(--color-secundary);
 }
 
-.buttons-container a.study:hover{
+.buttons-container button.study:hover{
     background: var(--color-primary-light);
+    cursor: pointer;
 }
 
-.buttons-container a.give-classes:hover{
+.buttons-container button.give-classes:hover{
     background: var(--color-secundary-dark);
+    cursor: pointer;
 }
 
 .total-connections{

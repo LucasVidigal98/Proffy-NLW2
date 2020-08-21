@@ -1,5 +1,5 @@
-import React, { useState, FormEvent } from  'react';
-import { useHistory } from 'react-router-dom'
+import React, { useState, FormEvent, useEffect } from  'react';
+import { useHistory, RouteComponentProps } from 'react-router-dom'
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
@@ -12,12 +12,23 @@ import warningIcon from '../../assets/images/icons/warning.svg'
 
 import './styles.css';
 
-function TeacherForm(){
+const TeacherForm:React.FC<RouteComponentProps> = ({location}) => {
     const [whatsapp, setWhatsapp] = useState('');
     const [bio, setBio] = useState('');
     const [subject, setSubject] = useState('');
     const [cost, setCost] = useState('');
     const [scheduleItems, setScheduleItems] = useState([{week_day: 0, from: '', to: ''}]); 
+    const [userInfo, setUserInfo] = useState({
+        info: {
+            id: 0,
+            name:'',
+            middlename:'',
+            email:'',
+            avatar:'',
+            whatsapp:'',
+            bio:''
+        }
+    });
 
     const history = useHistory();
 
@@ -53,6 +64,9 @@ function TeacherForm(){
         setScheduleItems(updatedScheduleItems);
     }
 
+    useEffect(() => {
+        setUserInfo(location.state as any);
+    }, [location.state]);
 
     return (
         <div id="page-teacher-form" className="container">
@@ -67,11 +81,11 @@ function TeacherForm(){
                     <fieldset>
                         <legend>Seus Dados</legend>
                         <div id="user-grid">
-                            <img src="https://avatars1.githubusercontent.com/u/36079245?s=460&v=4" alt="avatar" />
-                            <span>Lucas Vidigal</span>
-                            <Input name="whatsapp" label="Whatsapp" onChange={(e) => { setWhatsapp(e.target.value) }}/>
+                            <img src={userInfo.info.avatar} alt="avatar" />
+                            <span>{userInfo.info.name + ' ' + userInfo.info.middlename}</span>
+                            <Input name="whatsapp" label="Whatsapp" onChange={(e) => { setWhatsapp(e.target.value) }} value={userInfo.info.whatsapp} />
                         </div>
-                        <Textarea name="bio" label="Biografia" onChange={(e) => { setBio(e.target.value) }}/>
+                        <Textarea name="bio" label="Biografia" onChange={(e) => { setBio(e.target.value) }} value={userInfo.info.bio} />
                     </fieldset>
 
                     <fieldset>

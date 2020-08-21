@@ -15,21 +15,18 @@
     padding: 1.6rem 1.2rem;
 }
 
-.page-header .top-bar-container a{
-    height: 3.2rem;
-    transition: opacity 0.2s;
-}
-
-.page-header .top-bar-container a:hover{
-    opacity: 0.6;
-}
-
 .page-header .top-bar-container span{
     font: 400 1.6rem Poppins;
 }
 
 .page-header .top-bar-container > img{
-    height: 1.6rem;
+    height: 3.2rem;
+    transition: opacity 0.2s;
+}
+
+.page-header .top-bar-container > img:hover{
+    opacity: 0.6;
+    cursor: pointer;
 }
 
 .page-header .header-content{

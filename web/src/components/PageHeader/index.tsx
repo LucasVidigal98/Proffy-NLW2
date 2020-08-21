@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import logoImg from '../../assets/images/logo.svg';
 import backIcon from '../../assets/images/icons/back.svg';
@@ -14,7 +14,9 @@ interface PageHeaderProps {
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
-    const [style, setStyle] = useState('header-content')
+    const [style, setStyle] = useState('header-content');
+
+    const history = useHistory();
 
     useEffect(() => {
         if(props.profileHeader) setStyle('header-content-img');
@@ -23,9 +25,8 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
     return(
         <header className="page-header">
             <div className="top-bar-container">
-                <Link to="/">
-                    <img src={backIcon} alt="Voltar" />
-                </Link>
+            
+                <img src={backIcon} alt="Voltar" onClick={history.goBack}/>
 
                 <span>{props.pageHeaderName}</span>
 

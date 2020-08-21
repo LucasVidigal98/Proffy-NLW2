@@ -1,6 +1,8 @@
 import React, { useState, FormEvent } from  'react';
 import { Link, useHistory } from 'react-router-dom';
 
+import api from '../../services/api';
+
 import logoImg from '../../assets/images/logo.svg';
 import backImg from '../../assets/images/icons/back.svg';
 
@@ -8,23 +10,31 @@ import './styles.css';
 
 function Register(){
     const [name, setName] = useState('');
-    const [middleName, setMiddleName] = useState('');
+    const [middlename, setMiddlename] = useState('');
     const [email, setEmail] = useState('');
     const [passwd, setPasswd] = useState('');
 
     const history = useHistory();
 
-    function handleRegister(e: FormEvent){
+    async function handleRegister(e: FormEvent){
         e.preventDefault();
 
-        console.log({
-            name,
-            middleName,
-            email,
-            passwd
-        });
-
-        history.push('/sucessfull');
+        if(name === '' || middlename === '' || email === '' || passwd === ''){
+            alert('Preencha todos os campos para fazer os cadastro');
+        }else{
+            const response = await api.post('user-create', {
+                name,
+                middlename,
+                email,
+                passwd
+            });
+    
+            if(response.status !== 201){
+                alert('Erro ao cadastrar !')
+            }else{
+                history.push('/sucessfull');
+            }
+        }
     }
 
     return (
@@ -48,7 +58,7 @@ function Register(){
                     <span>Preencha os dados abaixo para começar.</span>
 
                     <input type="text" placeholder="Nome" id="inital-input" onChange={e => setName(e.target.value)} />
-                    <input type="text" placeholder="Sobrenome" onChange={e => setMiddleName(e.target.value)} />
+                    <input type="text" placeholder="Sobrenome" onChange={e => setMiddlename(e.target.value)} />
                     <input type="text" placeholder="E-mail" onChange={e => setEmail(e.target.value)} />
                     <input type="password" placeholder="Senha" id="final-input" onChange={e => setPasswd(e.target.value)} />
 
