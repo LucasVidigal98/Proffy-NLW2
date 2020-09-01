@@ -7,7 +7,9 @@ export default function serializedHour(hour: String) {
 
     if (time[0] === 12) return hourSplit;
 
-    return time[0] + 12 + ":" + time[1] + "0";
+    if (time[1] === 0) return time[0] + 12 + ":" + time[1] + "0";
+
+    return time[0] + 12 + ":" + time[1];
   }
 
   return hourSplit;

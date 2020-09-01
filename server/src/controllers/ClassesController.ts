@@ -43,20 +43,39 @@ export default class ClassesControler {
   }
 
   async create(request: Request, response: Response) {
-    const { id, whatsapp, bio, subject, cost, schedule } = request.body;
-    console.log(request.body);
+    const {
+      user_id,
+      name,
+      middlename,
+      email,
+      whatsapp,
+      bio,
+      subject,
+      cost,
+      schedule,
+    } = request.body;
     //transaction
     const trx = await db.transaction();
 
     try {
-      await trx("users")
-        .update({
-          whatsapp,
-          bio,
-        })
-        .where("id", "=", id as number);
-
-      const user_id = id;
+      if (name && middlename && email) {
+        await trx("users")
+          .update({
+            name,
+            middlename,
+            email,
+            whatsapp,
+            bio,
+          })
+          .where("id", "=", user_id as number);
+      } else {
+        await trx("users")
+          .update({
+            whatsapp,
+            bio,
+          })
+          .where("id", "=", user_id as number);
+      }
 
       const insertedClassesIds = await trx("classes").insert({
         subject,
@@ -92,22 +111,54 @@ export default class ClassesControler {
   }
 
   async update(request: Request, response: Response) {
-    const { id, whatsapp, bio, subject, cost, schedule } = request.body;
+    const {
+      user_id,
+      name,
+      middlename,
+      email,
+      whatsapp,
+      bio,
+      subject,
+      cost,
+      schedule,
+    } = request.body;
 
     const trx = await db.transaction();
 
     try {
       const classId = await trx("classes")
         .select("id")
-        .where("user_id", "=", id)
+        .where("user_id", "=", user_id)
         .where("subject", subject);
 
-      await trx("users")
-        .update({
-          whatsapp,
-          bio,
-        })
-        .where("id", "=", id);
+      if (schedule.length === 0) {
+        await trx("classes")
+          .delete()
+          .where("id", "=", classId[0].id)
+          .where("user_id", "=", user_id);
+
+        trx.commit();
+        return response.status(200).send();
+      }
+
+      if (name && middlename && email) {
+        await trx("users")
+          .update({
+            name,
+            middlename,
+            email,
+            whatsapp,
+            bio,
+          })
+          .where("id", "=", user_id);
+      } else {
+        await trx("users")
+          .update({
+            whatsapp,
+            bio,
+          })
+          .where("id", "=", user_id);
+      }
 
       await trx("classes")
         .update({
@@ -174,10 +225,38 @@ export default class ClassesControler {
         .where("class_schedule.class_id", "=", classId[0].id);
 
       const schedulesArray = schedules.map((schedule) => {
+        let day = "";
+
+        switch (schedule.week_day) {
+          case 0:
+            day = "Domingo";
+            break;
+          case 1:
+            day = "Segunda";
+            break;
+          case 2:
+            day = "Terça";
+            break;
+          case 3:
+            day = "Quarta";
+            break;
+          case 4:
+            day = "Quinta";
+            break;
+          case 5:
+            day = "Sexta";
+            break;
+          case 6:
+            day = "Sábado";
+            break;
+        }
+
         return {
+          user_id,
           week_day: schedule.week_day,
           from: serializedHour(convertMinutesToHour(schedule.from)),
           to: serializedHour(convertMinutesToHour(schedule.to)),
+          day,
         };
       });
 
