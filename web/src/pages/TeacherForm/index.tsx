@@ -54,7 +54,11 @@ const TeacherForm: React.FC<RouteComponentProps> = ({ location }) => {
           schedule: scheduleItems,
         })
         .then(() => {
-          history.push("/class-successfull");
+          const user_id = userInfo.info.id;
+          history.push({
+            pathname: "/class-successfull",
+            state: user_id,
+          });
         })
         .catch(() => {
           alert("Erro no cadastro!");
@@ -70,7 +74,11 @@ const TeacherForm: React.FC<RouteComponentProps> = ({ location }) => {
           schedule: scheduleItems,
         })
         .then(() => {
-          history.push("/class-successfull");
+          const user_id = userInfo.info.id;
+          history.push({
+            pathname: "/class-successfull",
+            state: user_id,
+          });
         })
         .catch(() => {
           alert("Erro ao atualizar cadastro !");
@@ -108,7 +116,6 @@ const TeacherForm: React.FC<RouteComponentProps> = ({ location }) => {
         if (response.data.length === 0) {
           setClassesExists(false);
         } else {
-          console.log(response.data);
           setCost(response.data);
           setClassesExists(true);
         }
@@ -151,10 +158,11 @@ const TeacherForm: React.FC<RouteComponentProps> = ({ location }) => {
               <Input
                 name="whatsapp"
                 label="Whatsapp"
+                wthatsapp
                 onChange={(e) => {
                   setWhatsapp(e.target.value);
                 }}
-                value={userInfo.info.whatsapp}
+                value={whatsapp}
               />
             </div>
             <Textarea
@@ -163,7 +171,7 @@ const TeacherForm: React.FC<RouteComponentProps> = ({ location }) => {
               onChange={(e) => {
                 setBio(e.target.value);
               }}
-              value={userInfo.info.bio}
+              value={bio}
             />
           </fieldset>
 
@@ -189,6 +197,7 @@ const TeacherForm: React.FC<RouteComponentProps> = ({ location }) => {
                 ]}
               />
               <Input
+                id="price"
                 name="cost"
                 label="Custo da sua hora por aula"
                 value={cost}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, RouteComponentProps } from "react-router-dom";
+import PowerSettingsNewOutlinedIcon from "@material-ui/icons/PowerSettingsNewOutlined";
 
 import api from "../../services/api";
 
@@ -8,7 +9,6 @@ import landingImage from "../../assets/images/landing.svg";
 import studyIcons from "../../assets/images/icons/study.svg";
 import giveClassesIcon from "../../assets/images/icons/give-classes.svg";
 import purpleHeartIcon from "../../assets/images/icons/purple-heart.svg";
-import logOutIcon from "../../assets/images/icons/log-out.svg";
 
 import "./styles.css";
 
@@ -41,6 +41,10 @@ const Landing: React.FC<RouteComponentProps> = ({ location }) => {
     history.push("give-classes", {
       info: userInfo,
     });
+  }
+
+  function handleStudy() {
+    history.push("study");
   }
 
   useEffect(() => {
@@ -84,11 +88,10 @@ const Landing: React.FC<RouteComponentProps> = ({ location }) => {
             <span>{userInfo.name + " " + userInfo.middlename}</span>
           </div>
 
-          <img
-            id="logout"
-            src={logOutIcon}
-            alt="sair"
+          <PowerSettingsNewOutlinedIcon
             onClick={handleBackToLogin}
+            fontSize="large"
+            id="logoff"
           />
         </header>
 
@@ -104,7 +107,7 @@ const Landing: React.FC<RouteComponentProps> = ({ location }) => {
         />
 
         <div className="buttons-container">
-          <button className="study">
+          <button className="study" onClick={handleStudy}>
             <img src={studyIcons} alt="Estudar" />
             Estudar
           </button>

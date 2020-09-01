@@ -1,18 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { RouteComponentProps, useHistory } from "react-router-dom";
 
-import sucessImg from '../../assets/images/icons/success-check-icon.svg';
+import sucessImg from "../../assets/images/icons/success-check-icon.svg";
 
-function ClassSuccessfull(){
-    return(
-        <div id="page-successfull">
-            <img src={sucessImg} alt="Sucesso" />
-            <h1>Cadastro concluído</h1>
-            <p>Agora você faz parte da plataforma da Proffy.</p>
-            <p>Tenha uma ótima experiência.</p>
-            <Link to="/landing">Voltar para Home</Link>
-        </div>
-    );
-}
+const ClassSuccessfull: React.FC<RouteComponentProps> = ({ location }) => {
+  const [userId, setUserId] = useState(0);
+
+  const history = useHistory();
+
+  function backToHome() {
+    history.push({
+      pathname: "/landing",
+      state: userId,
+    });
+  }
+
+  useEffect(() => {
+    setUserId(location.state as number);
+  }, [location.state]);
+
+  return (
+    <div id="page-successfull">
+      <img src={sucessImg} alt="Sucesso" />
+      <h1>Perfil Atualizado e aula cadastrada</h1>
+      <button onClick={backToHome}>Voltar para Home</button>
+    </div>
+  );
+};
 
 export default ClassSuccessfull;

@@ -1,197 +1,204 @@
-#page-landing{
-    width: 100vw;
-    height: 100vh;
+#page-landing {
+  width: 100vw;
+  height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    color: var(--color-text-in-primary);
-    background: var(--color-primary);
+  color: var(--color-text-in-primary);
+  background: var(--color-primary);
 }
 
-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 6.4rem;
+#logoff {
+  background-color: var(--color-primary-darker);
+  color: black;
+  font-size: 3.3rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
 }
 
-header .user-info{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6.4rem;
 }
 
-header .user-info:hover{
-    cursor: pointer;
+header .user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-header .user-info img{
-    width: 4.0rem;
-    height: 4.0rem;
-    border-radius: 5.0rem;
-    margin-right: 1.2rem;
+header .user-info:hover {
+  cursor: pointer;
 }
 
-header .user-info span{
-    font: 400 1.6rem Poppins;
-    color: var(--color-title-in-primary);
+header .user-info img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 5rem;
+  margin-right: 1.2rem;
 }
 
-header #logout{
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: var(--color-primary-darker);
-    border-radius: 0.8rem;
+header .user-info span {
+  font: 400 1.6rem Poppins;
+  color: var(--color-title-in-primary);
 }
 
-header #logout:hover{
-    cursor: pointer;
+header #logout {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--color-primary-darker);
+  border-radius: 0.8rem;
 }
 
-.logo-container img{
-    height: 10rem;
+header #logout:hover {
+  cursor: pointer;
 }
 
-.hero-image{
-    width: 100%;
+.logo-container img {
+  height: 10rem;
 }
 
-.logo-container{
-    text-align: center;
-    margin-bottom: 3.2rem;
+.hero-image {
+  width: 100%;
 }
 
-.logo-container h2{
-    font-size: 500;
+.logo-container {
+  text-align: center;
+  margin-bottom: 3.2rem;
+}
+
+.logo-container h2 {
+  font-size: 500;
+  font-size: 2.4rem;
+  line-height: 4.6rem;
+  margin-top: 0.8rem;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 3.2rem 0;
+}
+
+.buttons-container button {
+  width: 30rem;
+  height: 10.4rem;
+  border-radius: 0.8rem;
+  font: 700 2rem Archivo;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  color: var(--color-button-text);
+
+  transition: background-color 0.2s;
+  outline: none;
+  box-shadow: none;
+  border: 0;
+}
+
+.buttons-container button:first-child {
+  margin-right: 1.6rem;
+}
+
+.buttons-container button img {
+  width: 4rem;
+}
+
+.buttons-container button.study {
+  background: var(--color-primary-lighter);
+}
+
+.buttons-container button.give-classes {
+  background: var(--color-secundary);
+}
+
+.buttons-container button.study:hover {
+  background: var(--color-primary-light);
+  cursor: pointer;
+}
+
+.buttons-container button.give-classes:hover {
+  background: var(--color-secundary-dark);
+  cursor: pointer;
+}
+
+.total-connections {
+  font-size: 1.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.total-connections img {
+  margin-left: 0.8rem;
+}
+
+@media (min-width: 1100px) {
+  #page-landing-content {
+    max-width: 1100px;
+
+    display: grid;
+    grid-template-rows: 1fr 350px 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-areas:
+      "img img logout"
+      "logo hero hero"
+      "buttons buttons total";
+  }
+
+  header .user-info {
+    grid-area: img;
+  }
+
+  header #logout {
+    grid-area: logout;
+    justify-self: end;
+  }
+
+  .logo-container {
+    grid-area: logo;
+    text-align: left;
+    align-self: center;
+    margin: 0;
+  }
+
+  .logo-container h2 {
+    text-align: initial;
+    font-size: 3.6rem;
+  }
+
+  .logo-container img {
+    height: 100%;
+  }
+
+  .hero-image {
+    grid-area: hero;
+    justify-self: end;
+  }
+
+  .buttons-container {
+    grid-area: buttons;
+    justify-content: flex-start;
+  }
+
+  .buttons-container a {
     font-size: 2.4rem;
-    line-height: 4.6rem;
-    margin-top: 0.8rem;
-}
+  }
 
-.buttons-container{
-    display: flex;
-    justify-content: center;
-    margin: 3.2rem 0;
-}
+  .buttons-container a img {
+    margin-right: 2.4rem;
+  }
 
-.buttons-container button{
-    width: 30rem;
-    height: 10.4rem;
-    border-radius: 0.8rem;
-    font: 700 2rem Archivo;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    text-decoration: none;
-    color: var(--color-button-text);
-
-    transition: background-color 0.2s;
-    outline: none;
-    box-shadow: none;
-    border: 0;
-}
-
-.buttons-container button:first-child{
-    margin-right: 1.6rem;
-}
-
-.buttons-container button img{
-    width: 4rem;
-}
-
-.buttons-container button.study{
-    background: var(--color-primary-lighter);
-}
-
-.buttons-container button.give-classes{
-    background: var(--color-secundary);
-}
-
-.buttons-container button.study:hover{
-    background: var(--color-primary-light);
-    cursor: pointer;
-}
-
-.buttons-container button.give-classes:hover{
-    background: var(--color-secundary-dark);
-    cursor: pointer;
-}
-
-.total-connections{
-    font-size: 1.4rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.total-connections img{
-    margin-left: 0.8rem;
-}
-
-@media (min-width: 1100px){
-    #page-landing-content{
-        max-width: 1100px;
-
-        display: grid;
-        grid-template-rows: 1fr 350px 1fr;
-        grid-template-columns: 2fr 1fr 1fr;
-        grid-template-areas: 
-            "img img logout"
-            "logo hero hero" 
-            "buttons buttons total"
-        ;
-    }
-
-    header .user-info{
-        grid-area: img;
-    }
-
-    header #logout{
-        grid-area: logout;
-        justify-self: end;
-    }
-
-    .logo-container{
-        grid-area: logo;
-        text-align: left;
-        align-self: center;
-        margin: 0;
-    }
-
-    .logo-container h2{
-        text-align: initial;
-        font-size: 3.6rem;
-    }
-
-    .logo-container img{
-        height: 100%;
-    }
-
-    .hero-image{
-        grid-area: hero;
-        justify-self: end;
-    }
-
-    .buttons-container{
-        grid-area: buttons;
-        justify-content: flex-start;
-    }
-
-    .buttons-container a{
-        font-size: 2.4rem;
-    }
-
-    .buttons-container a img{
-        margin-right: 2.4rem;
-    }
-
-    .total-connections{
-        grid-area: total;
-        justify-self: end;
-    }
+  .total-connections {
+    grid-area: total;
+    justify-self: end;
+  }
 }
