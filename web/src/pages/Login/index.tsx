@@ -1,9 +1,8 @@
-import React, { FormEvent, useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import React, { FormEvent, useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import AuthContext from "../../contexts/auth";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
-
-import api from "../../services/api";
 
 import logoImg from "../../assets/images/logo.svg";
 import heartImg from "../../assets/images/icons/purple-heart.svg";
@@ -17,44 +16,33 @@ function Login() {
   const [showPasswd, setShowPasswd] = useState(false);
   const [typeInput, setTypeInput] = useState("password");
 
-  const history = useHistory();
+  const { LogInAuth, failLogin } = useContext(AuthContext);
 
   async function handleLogin(e: FormEvent) {
     e.preventDefault();
 
     if (buttonChecked && localStorage.getItem("@proffy/remember") === "false") {
-      console.log("aqui2");
       localStorage.setItem("@proffy/email", email);
       localStorage.setItem("@proffy/passwd", passwd);
       localStorage.setItem("@proffy/remember", "true");
     } else if (!buttonChecked) {
-      console.log("aqui 1");
       localStorage.setItem("@proffy/remember", "false");
       localStorage.setItem("@proffy/email", "");
       localStorage.setItem("@proffy/passwd", "");
     }
 
-    const response = await api.get(`/user-login`, {
-      params: {
-        email,
-        passwd,
-      },
-    });
-
-    if (response.status !== 200) {
-      alert(response.data);
-    } else {
-      const userId = response.data;
-      history.push({
-        pathname: "/landing",
-        state: userId,
-      });
-    }
+    await LogInAuth(email, passwd);
   }
 
   function handleRememberMe() {
     setButtonChecked(!buttonChecked);
   }
+
+  useEffect(() => {
+    if (failLogin) {
+      alert("Email ou senha incorretos");
+    }
+  }, [failLogin]);
 
   useEffect(() => {
     if (localStorage.getItem("@proffy/remember")) {
