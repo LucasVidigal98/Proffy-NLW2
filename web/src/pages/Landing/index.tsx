@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, RouteComponentProps } from "react-router-dom";
 import PowerSettingsNewOutlinedIcon from "@material-ui/icons/PowerSettingsNewOutlined";
+import AuthContext from "../../contexts/auth";
 
 import api from "../../services/api";
 
@@ -14,7 +15,6 @@ import "./styles.css";
 
 const Landing: React.FC<RouteComponentProps> = ({ location }) => {
   const [totalConnections, setTotalConnections] = useState(0);
-  const [userId, setUserId] = useState(0);
   const [userInfo, setUserInfo] = useState({
     id: 0,
     name: "",
@@ -27,8 +27,10 @@ const Landing: React.FC<RouteComponentProps> = ({ location }) => {
 
   const history = useHistory();
 
+  const { userId, LogOut } = useContext(AuthContext);
+
   function handleBackToLogin() {
-    history.push("/");
+    LogOut();
   }
 
   function handleGoToProfile() {
@@ -55,7 +57,6 @@ const Landing: React.FC<RouteComponentProps> = ({ location }) => {
   }, []);
 
   useEffect(() => {
-    setUserId(location.state as number);
     const id = userId;
 
     api
